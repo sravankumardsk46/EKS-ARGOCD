@@ -8,9 +8,11 @@ lanch-----
 connect ubuntu server
 sudo apt update
 sudo apt upgrade
-sudo nano hostname
+sudo nano /etc/hostname
 EKS-Boostrap-server
 ctrl+s and ctrl+x
 sudo init 6
 --------------------------
 re connect ubuntu server
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+
