@@ -33,6 +33,44 @@ ll
 #eksctl mv to /bin
 sudo mv /tmp/eksctl /bin
 eksctl version
+#back to server
+cd ~
+######### go to IAM to create ROLE ########
+name: eksctl_role
+admin access 
+create----
+### goto eks-boostrap-server###
+action 
+modifide role
+eksctl_role
+############################
+#create cluster
+ eksctl create cluster --name virtualtechbox-cluster \
+> --region ap-southeast-2 \
+> --node-type t2.small \
+> --nodes 3 \
+# enter----enter---two times---it take some dates
+kubectl get nodes
+# create argocd
+kubectl create namespace argocd
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+kubectl get pods -n argocd
+sudo curl --silent --location -o /usr/local/bin/argocd https://github.com/argoproj/argo-cd/releases/download/v2.4.7/argocd-linux-amd64
+sudo chmod +x /usr/local/bin/argocd
+##create loadbalacers ---
+kubectl patch svc argocd-server -n argocd -p '{"spec":{"type": "LoadBalancer"}}'
+## it give url---
+kubectl get svc -n argocd
+## it give u pass
+kubectl get secret argocd-initial-admin-secret -n argocd -o yaml
+
+
+
+
+
+
+
+
 
 
 
