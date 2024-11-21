@@ -82,6 +82,15 @@ argocd cluster add i-0aaafb8001ef27086@virtualtechbox-cluster.ap-southeast-2.eks
 # role banding
 argocd cluster list
 # now show u both cluster
+# got ardocd dashbord  setting   repositery
+#go to argocd 
+kubectl get pos
+kubectl get svc
+# goto goole copy past tomcat show u
+a90c8fe4afc0c4a78b261d5ec34f2b45-289183958.ap-southeast-2.elb.amazonaws.com:8080
+a90c8fe4afc0c4a78b261d5ec34f2b45-289183958.ap-southeast-2.elb.amazonaws.com:8080/webapp
+
+
 
 
 
