@@ -63,6 +63,30 @@ kubectl patch svc argocd-server -n argocd -p '{"spec":{"type": "LoadBalancer"}}'
 kubectl get svc -n argocd
 ## it give u pass
 kubectl get secret argocd-initial-admin-secret -n argocd -o yaml
+#de code pass copy past bellow
+echo WDI4LTMwa0ZEdHhjN3MtZw== | base64 --decode
+## copy loadbalencer url past to GOOGLE
+ ad6254e6634324fcf99717a7e67654e5-379567094.ap-southeast-2.elb.amazonaws.com  
+# it give u argocd dashbord go to cluster server copy pass past google --------------
+@@ argocd 
+user: admin
+pass: X28-30kFDtxc7s-g
+#go to uplode info to set pass---
+## logout and login
+ardocd login ad6254e6634324fcf99717a7e67654e5-379567094.ap-southeast-2.elb.amazonaws.com
+# goto ardocd dashbord
+go to setting ---cluster see one cluster show u
+argocd cluster list
+kubectl config get-contexts
+argocd cluster add i-0aaafb8001ef27086@virtualtechbox-cluster.ap-southeast-2.eksctl.io --name virtualtechbox-cluster
+# role banding
+argocd cluster list
+# now show u both cluster
+
+
+
+
+
 
 
 
