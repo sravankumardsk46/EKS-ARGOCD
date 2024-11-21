@@ -1,0 +1,16 @@
+ec2 instances
+EKS-Boostrap-server
+ubuntu os
+t2.micro
+key 
+lanch-----
+------------------------
+connect ubuntu server
+sudo apt update
+sudo apt upgrade
+sudo nano hostname
+EKS-Boostrap-server
+ctrl+s and ctrl+x
+sudo init 6
+--------------------------
+re connect ubuntu server
