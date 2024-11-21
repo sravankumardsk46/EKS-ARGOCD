@@ -89,6 +89,9 @@ kubectl get svc
 # goto goole copy past tomcat show u
 a90c8fe4afc0c4a78b261d5ec34f2b45-289183958.ap-southeast-2.elb.amazonaws.com:8080
 a90c8fe4afc0c4a78b261d5ec34f2b45-289183958.ap-southeast-2.elb.amazonaws.com:8080/webapp
+###############   DELETE   ###############################################
+eksctl delete cluster --name virtualtechbox-cluster --region ap-southeast-2
+###########################################################################
 
 
 
