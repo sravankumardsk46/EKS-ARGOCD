@@ -43,3 +43,22 @@ same key
 create
 ----------
 connect jenkins-agent
+sudo apt update
+sudo apt upgrade
+sudo nano /etc/hostname
+Jenkins-Agent
+ctrl+s ctrl+x
+sudo init 6
+----
+sudo apt install openjdk-17-jre
+java -version
+# docker instal jenkins-agent
+sudo apt-get install docker.io
+## full raight for my user commnad
+sudo usermod -aG docker $USER
+sudo init 6
+sudo nano /etc/ssh/sshd_config
+------
+PubkeyAuthentication yes
+
+
