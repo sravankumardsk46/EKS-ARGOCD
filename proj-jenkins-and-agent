@@ -1,0 +1,45 @@
+### install jenkins master and jenkins agent ############
+Jenkins-Master
+ubuntu os 
+t2.micro
+key
+15 gb
+create
+---------------
+connect jenkins master
+sudo apt get update
+sudo apt upgarade 
+sudo nano /etc/hostname
+- give JENKINS-MASTER
+-(ctrl + s ctrl + x)
+## to chenge hostname of system  
+sudo init 6
+## re connect server
+go to security 8080 port
+### jenkins install in jenkins master
+sudo apt install openjdk-17-jre
+java -version
+# go to jenkins document
+-------
+ubuntu weekly release
+-----
+sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \
+  https://pkg.jenkins.io/debian/jenkins.io-2023.key
+echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]" \
+  https://pkg.jenkins.io/debian binary/ | sudo tee \
+  /etc/apt/sources.list.d/jenkins.list > /dev/null
+sudo apt-get update
+sudo apt-get install jenkins
+-------
+sudo systemctl enable jenkins
+sudo systemctl start jenkins
+sudo systemctl status jenkins
+########## EC2 INSTENCE CREATE JENKINS-AGENT ########
+Jenkins-Agent
+ubuntu os
+t2.micro
+same key
+15 gb
+create
+----------
+connect jenkins-agent
