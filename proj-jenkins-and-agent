@@ -58,7 +58,40 @@ sudo apt-get install docker.io
 sudo usermod -aG docker $USER
 sudo init 6
 sudo nano /etc/ssh/sshd_config
-------
+------ # tag remove
 PubkeyAuthentication yes
+AuthorizedKeysFile .ssh/authorized_keys .ssh/authorized_keys2
+ctrl +s+x
+------------
+--------------------
+# go to JENKINS-MASTER CONNECT SERVER
+--------------------------------------
+sudo nano /etc/ssh/sshd_config
+------ # tag remove
+PubkeyAuthentication yes
+AuthorizedKeysFile .ssh/authorized_keys .ssh/authorized_keys2
+ctrl +s+x
+------------------
+#jenkins-master server----
+sudo service sshd reload
+# jenkins-agent server -----
+sudo service sshd reload
+# go to jenkins-master---genarate ssh-keygen
+ssh-keygen
+enter-
+pwd 
+cd ssh
+ls
+pub-key priv-key
+cat pub-key  "COPY"
+### go to JENKINS-AGENT ----
+cd .ssh/
+ls
+# show u atherized file open 
+vi authorized_keys
+past 123456789
+:wq!
+---------
+
 
 
