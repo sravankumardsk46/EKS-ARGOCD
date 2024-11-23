@@ -95,6 +95,122 @@ cat authorized_keys
 ---------
 # go to JENKIN-MASTER -- CREATE JENKINS LOGIN ######
 jenkins name:clouduser
+-------------------------------------------------------
+## FALOW DOCUMENT OF JENKINS EKS-ARDOCD "JENKINS"
+------------------------------------------------------
+# register-app
+#create Jenkins file on "register-app"  on github
+vi Jenkins
+pipeline {
+    agent { label 'Jenkins-Agent' }
+    tools {
+        jdk 'Java17'
+        maven 'Maven3'
+    }
+    stages {
+        stage("Cleanup Workspace") {
+            steps {
+                cleanWs()
+            }
+        }
+        stage("checkout from SCM") {
+            steps {
+                git branch: 'main', credentialsId: 'githun', url: 'https://github.com/sravankumardsk46/register-app'
+            }
+        }
+        stage("Build Application") {
+            steps {
+                sh "mvn clean package"
+            }
+        }
+        stage("Test Application") {
+            steps {
+                sh "mvn test"
+            }
+        }
+    }
+}
+--------------------------------------------------------
+# commit chenge above jenkins file in register-app
+# now follow jenkins pdf finesh build success
+------------------------------------------------------
+# now install SonarQkube ec2 instances
+-------------------------------------
+Name: SonarQube
+ubuntu os
+t3.medium
+same key
+15 gb
+create instance
+----------------------------
+sudo apt update
+sudo apt upgrade
+# PostgreSQL Repository
+sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+wget -qO- https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo tee /etc/apt/trusted.gpg.d/pgdg.asc &> /dev/null
+sudo apt update
+sudo apt-get -y install postgresql postgresql-contrib
+sudo systemctl enable postgresql
+sudo passwd postgres
+# you have remember this posswd
+Enter new UNIX password: sravan
+Retype new UNIX password: sravan
+passwd: password updated successfully
+su- postgres
+passwd : sravan
+# this command chenge the root to postgresql root
+createuser sonar
+psql
+ALTER USER sonar WITH ENCRYPTED password 'sonar'; 
+(or)
+ALTER USER sonar WITH ENCRYPTED PASSWORD 'sonar';
+CREATE DATABASE sonarqube OWNER sonar;
+GRANT ALL PRIVILEGES ON DATABASE sonarqube TO sonar;
+\q
+exit
+# come back to ubuntu user
+# add adoptium repo
+sudo bash
+wget -qO- https://packages.adoptium.net/artifactory/api/gpg/key/public | tee /etc/apt/keyrings/adoptium.asc
+# above currect not work i think
+------------------------------
+# this can change root user
+sudo su
+echo "deb [signed-by=/etc/apt/keyrings/adoptium.asc] https://packages.adoptium.net/artifactory/deb $(awk -F= '/^VERSION_CODENAME/ {print $2}' /etc/os-release) main" | tee /etc/apt/sources.list.d/adoptium.list
+apt update
+apt install openjdk-17-jre
+update-alternatives --config java
+/usr/bin/java --version
+exit
+sudo vim /etc/security/limits.conf
+-------------------------------------------
+# the end of file copy past below two lines
+sonarqube   -   nofile   65536
+sonarqube   -   nproc    4096
+:wq!
+--------------------------------
+# this is kernel settings
+sudo vim /etc/sysctl.conf
+#Add this line at the end of the file:
+vm.max_map_count = 262144
+# reboot system
+sudo init 6
+------------------
+port give sonarqube server 9000
+-----------------------------
+# reconnect server now install sonarqube steps 
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
