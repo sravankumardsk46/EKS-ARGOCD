@@ -91,7 +91,11 @@ ls
 vi authorized_keys
 past 123456789
 :wq!
+cat authorized_keys
 ---------
+# go to JENKIN-MASTER -- CREATE JENKINS LOGIN ######
+jenkins name:clouduser
+
 
 
 
