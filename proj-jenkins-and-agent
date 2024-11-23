@@ -246,7 +246,10 @@ sudo tail -f /opt/sonarqube/log/sonar.log
 ------------------------------------------------
 ## copy sonarqube publicip past goole :9000
 -------------------------------------------------
-
+# login
+user name:admin
+pass:admin
+---------------
 
 
 
