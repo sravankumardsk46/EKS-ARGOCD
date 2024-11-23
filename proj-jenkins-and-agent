@@ -199,12 +199,53 @@ sudo init 6
 port give sonarqube server 9000
 -----------------------------
 # reconnect server now install sonarqube steps 
+sudo wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-9.9.0.65466.zip
+sudo apt install unzip
+sudo unzip sonarqube-9.9.0.65466.zip -d /opt
+sudo mv /opt/sonarqube-9.9.0.65466 /opt/sonarqube
+sudo groupadd sonar
+sudo useradd -c "user to run sonarqube" -d /opt/sonarqube -g sonar sonar
+sudo chown  sonar:sonar /opt/sonarqube -R
+(or)
+sudo chown -R sonar:sonar /opt/sonarqube
+# to set databace credentiole 
+sudo vim /opt/sonarqube/conf/sonar.properties
+----------------------------------------- to set below locations
+sonar.jdbc.username=sonar
+sonar.jdbc.password=sonar
+sonar.jdbc.url=jdbc:postgresql://localhost:5432/sonarqube
+--------------------------------------------
+sudo vim /etc/systemd/system/sonar.service
+--------------------------
+[Unit]
+Description=SonarQube Service
+After=syslog.target network.target
 
+[Service]
+Type=forking
 
+ExecStart=/opt/sonarqube/bin/linux-x86-64/sonar.sh start
+ExecStop=/opt/sonarqube/bin/linux-x86-64/sonar.sh stop
 
+User=sonar
+Group=sonar
+Restart=always
 
+LimitNOFILE=65536
+LimitNPROC=4096
 
-
+[Install]
+WantedBy=multi-user.target
+-----------------------------
+:wq!
+# now start sonarqube
+sudo systemctl start sonar
+sudo systemctl enable sonar
+sudo systemctl status sonar
+sudo tail -f /opt/sonarqube/log/sonar.log
+------------------------------------------------
+## copy sonarqube publicip past goole :9000
+-------------------------------------------------
 
 
 
